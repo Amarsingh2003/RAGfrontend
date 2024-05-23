@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { BrowserRouter,Routes, Route } from "react-router-dom";
+import "./App.css";
+import CopyRight from "./components/CopyRight.js";
+import LandingPage from "./components/LandingPage.js";
+import Login from "./components/Login.js";
+import Navbar from "./components/NavBar.js";
+import SignUp from "./components/SignUp.js";
+import Dashboard from "./components/Dashboard.js";
+
 
 function App() {
+
+  const [login, setLogin]=useState(false);
+  function showLoginPage()
+  {
+      setLogin(true);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+      <div className="relative">
+        <Navbar/>
+        <Routes>
+          <Route path="/" element={<LandingPage/>}/>
+          <Route path="dashboard" element={<Dashboard/>}/>
+
+        </Routes>
+       <CopyRight/>
     </div>
+    </BrowserRouter>
   );
 }
 
